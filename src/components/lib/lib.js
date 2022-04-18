@@ -30,6 +30,14 @@ const CircleButton = styled.button({
   cursor: "pointer",
 });
 
+const PokemonList = styled.div({
+  display: "flex",
+  maxWidth: "550px",
+  margin: "auto",
+  flexWrap: "wrap",
+  justifyContent: "spaceBetween",
+});
+
 const Spinner = styled(FaSpinner)({
   animation: `${spin} 1s linear infinite`,
 });
@@ -156,6 +164,7 @@ export {
   FullPageErrorFallback,
   ErrorMessage,
   CircleButton,
+  PokemonList,
   Spinner,
   Button,
   Input,
