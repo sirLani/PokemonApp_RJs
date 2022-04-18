@@ -1,12 +1,12 @@
-// /** @jsx jsx */
-
+/** @jsxRuntime classic */
+/** @jsx jsx */
 import { jsx } from "@emotion/react";
 
 import { Link as RouterLink } from "react-router-dom";
 import styled from "@emotion/styled/macro";
 import { keyframes } from "@emotion/react";
-import * as colors from "../../../styles/colors";
-import * as mq from "../../../styles/media-queries";
+import * as colors from "../../styles/colors";
+import * as mq from "../../styles/media-queries";
 import { Dialog as ReachDialog } from "@reach/dialog";
 import { FaSpinner } from "react-icons/fa";
 
@@ -28,14 +28,6 @@ const CircleButton = styled.button({
   color: colors.text,
   border: `1px solid ${colors.gray10}`,
   cursor: "pointer",
-});
-
-const BookListUL = styled.ul({
-  listStyle: "none",
-  padding: "0",
-  display: "grid",
-  gridTemplateRows: "repeat(auto-fill, minmax(100px, 1fr))",
-  gridGap: "1em",
 });
 
 const Spinner = styled(FaSpinner)({
@@ -164,7 +156,6 @@ export {
   FullPageErrorFallback,
   ErrorMessage,
   CircleButton,
-  BookListUL,
   Spinner,
   Button,
   Input,

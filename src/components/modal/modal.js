@@ -1,9 +1,10 @@
-// /** @jsx jsx */
+/** @jsxRuntime classic */
+/** @jsx jsx */
 import { jsx } from "@emotion/react";
 
 import * as React from "react";
 import VisuallyHidden from "@reach/visually-hidden";
-import { Dialog, CircleButton } from "./lib/lib";
+import { Dialog, CircleButton } from "../lib/lib";
 
 const callAll =
   (...fns) =>
