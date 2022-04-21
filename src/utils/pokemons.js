@@ -1,5 +1,4 @@
 import pokemonPlaceholderSvg from "assets/placeholder.svg";
-import React from "react";
 import { useQuery, queryCache } from "react-query";
 import { client } from "./api-client";
 
@@ -24,7 +23,7 @@ const pokemonQueryConfig = {
 
 const getPokemonSearchConfig = (client, query) => ({
   queryKey: ["pokemonSearch", { query }],
-  queryFn: () => client(`/pokemon${query}`).then((data) => data),
+  queryFn: () => client(`/pokemon/${query}`).then((data) => data),
   config: {
     onSuccess(pokemons) {
       queryCache.setQueryData(

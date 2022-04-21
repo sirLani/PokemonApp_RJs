@@ -19,12 +19,12 @@ import { Pokemon } from "components/pokemonItem/pokemon";
 
 function DiscoverPokemonScreen() {
   const [query, setQuery] = React.useState("");
-  const [queried, setQueried] = React.useState();
+  const [queried, setQueried] = React.useState(false);
   const [allPokemons, setAllPokemons] = React.useState([]);
   const { pokemons, error, isLoading, isError, isSuccess } =
     usePokemonSearch(query);
 
-  const [shouldQuery, setShouldQuery] = React.useState(false);
+  const [queriedPokis, setQueriedPokis] = React.useState();
 
   const [isAllPokemonsLoading, setIsAllPokemonsLoading] = React.useState(false);
 
@@ -41,19 +41,6 @@ function DiscoverPokemonScreen() {
     console.log(list);
     return list;
   };
-  // const { data, error, isLoading, isError, isSuccess } = useQuery(
-  //   "pokis",
-  //   fetchPokemons(allPokemons),
-  //   { enabled: shouldQuery }
-  // );
-
-  // const {
-  //   pokemonList,
-  //   error: listError,
-  //   isLoading: listLoading,
-  //   isError: listIsError,
-  //   isSuccess: listIsSuccess,
-  // } = useFetchPokemonSearch(allPokemons);
 
   // const splitUrl = (url) => {
   //   const lastSegment = url.split("pokemon").pop();
@@ -64,8 +51,17 @@ function DiscoverPokemonScreen() {
     if (pokemons?.results) {
       const pokemonList = pokemons.results;
       const pokiList = fetchPokemons(pokemonList);
-      console.log(pokiList);
       setAllPokemons(pokiList);
+    } else if (pokemons?.name) {
+      const list = [];
+      // console.log(pokemons);
+      list.push(pokemons);
+      console.log(Boolean(pokemons));
+      Boolean(pokemons);
+      console.log(pokemons);
+      // setQueriedPokis(pokemons);
+      setAllPokemons(list);
+      setQueried(false);
     }
   }, [pokemons]);
 
@@ -116,7 +112,11 @@ function DiscoverPokemonScreen() {
         ) : null}
       </div>
       <div>
-        {queried ? null : (
+        {queried ? (
+          <div css={{ width: "100%", margin: "auto" }}>
+            <Spinner />
+          </div>
+        ) : (
           <div css={{ marginTop: 20, fontSize: "1.2em", textAlign: "center" }}>
             <p>Welcome to the discover page.</p>
             <p>Here, check out a list of Pokemons...</p>
@@ -125,8 +125,8 @@ function DiscoverPokemonScreen() {
                 <Spinner />
               </div>
             ) : isSuccess ? (
-              <p>Here you go! Find more books with the search bar above.</p>
-            ) : isSuccess && !pokemons.results.length ? (
+              <p>Here you go! Find more Pokemons with the search bar above.</p>
+            ) : isSuccess && !pokemons ? (
               <p>
                 Hmmm... I couldn't find any pokemon to suggest for you. Sorry.
               </p>
@@ -136,7 +136,7 @@ function DiscoverPokemonScreen() {
         {allPokemons.length > 0 ? (
           <PokemonList css={{ marginTop: 20 }}>
             {allPokemons.map((pokemon, id) => (
-              <Pokemon key={id} pokemon={pokemon} />
+              <Pokemon key={pokemon.name} pokemon={pokemon} />
             ))}
           </PokemonList>
         ) : queried ? (
