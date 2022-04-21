@@ -1,8 +1,13 @@
-import MainApp from "main";
+import { FullPageSpinner } from "components/lib/lib";
+import React from "react";
+
+const MainApp = React.lazy(() => import(/* webpackPrefetch: true */ "./main"));
 
 function App() {
   return (
-    <MainApp />
+    <React.Suspense fallback={<FullPageSpinner />}>
+      <MainApp />
+    </React.Suspense>
     // <Modal>
     //   <ModalOpenButton>
     //     <button type="button">Open</button>
