@@ -35,7 +35,7 @@ const PokemonList = styled.div({
   maxWidth: "550px",
   margin: "auto",
   flexWrap: "wrap",
-  justifyContent: "spaceBetween",
+  justifyContent: "space-between",
 });
 
 const Spinner = styled(FaSpinner)({
