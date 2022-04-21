@@ -38,6 +38,12 @@ const PokemonList = styled.div({
   justifyContent: "space-between",
 });
 
+const PokemonDetails = styled.div({
+  display: "flex",
+  alignItems: "flex-start",
+  justifyContent: "space-between",
+});
+
 const Spinner = styled(FaSpinner)({
   animation: `${spin} 1s linear infinite`,
 });
@@ -75,7 +81,7 @@ const Input = styled.input({ borderRadius: "3px" }, inputStyles);
 const Textarea = styled.textarea(inputStyles);
 
 const Dialog = styled(ReachDialog)({
-  maxWidth: "450px",
+  maxWidth: "650px",
   borderRadius: "3px",
   paddingBottom: "3.5em",
   boxShadow: "0 10px 30px -5px rgba(0, 0, 0, 0.2)",
@@ -160,6 +166,10 @@ function FullPageErrorFallback({ error }) {
   );
 }
 
+function capitalize(s) {
+  return s[0].toUpperCase() + s.slice(1);
+}
+
 export {
   FullPageErrorFallback,
   ErrorMessage,
@@ -173,4 +183,6 @@ export {
   FormGroup,
   FullPageSpinner,
   Link,
+  PokemonDetails,
+  capitalize,
 };
