@@ -4,7 +4,7 @@ import { jsx } from "@emotion/react";
 
 import * as React from "react";
 import VisuallyHidden from "@reach/visually-hidden";
-import { Dialog, CircleButton } from "../lib/lib";
+import { Dialog, CircleButton, capitalize } from "../lib/lib";
 
 const callAll =
   (...fns) =>
@@ -51,7 +51,9 @@ function ModalContents({ title, children, ...props }) {
           </CircleButton>
         </ModalDismissButton>
       </div>
-      <h3 css={{ textAlign: "center", fontSize: "2em" }}>{title}</h3>
+      <h3 css={{ textAlign: "center", fontSize: "2em" }}>
+        {capitalize(title)}
+      </h3>
       {children}
     </ModalContentsBase>
   );
