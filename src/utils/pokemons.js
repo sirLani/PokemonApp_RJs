@@ -39,4 +39,14 @@ function usePokemonSearch(query) {
   return { ...result, pokemons: result.data ?? loadingPokemons };
 }
 
-export { usePokemonSearch };
+const Favorites = () => {
+  const list = [];
+  Object.keys(localStorage).map((k) => {
+    const pokiList = localStorage.getItem(k);
+    list.push(JSON.parse(pokiList));
+    return list;
+  });
+  return list;
+};
+
+export { usePokemonSearch, Favorites };

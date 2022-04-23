@@ -7,25 +7,17 @@ import Tooltip from "@reach/tooltip";
 import { FaSearch, FaTimes } from "react-icons/fa";
 import * as colors from "styles/colors";
 
-import {
-  Spinner,
-  Input,
-  PokemonList,
-  Button,
-  splitUrl,
-} from "../components/lib/lib";
+import { Spinner, PokemonList, Button, splitUrl } from "../components/lib/lib";
 import { usePokemonSearch } from "utils/pokemons";
 import { Pokemon } from "components/pokemonItem/pokemon";
-import { client } from "utils/api-client";
+
 import { useNavigate } from "react-router-dom";
 import { Search } from "components/search/search";
-// import { usePokemonSearch } from "utils/pokemons";
 
 function DiscoverPokemonScreen() {
   const [query] = React.useState("");
   const [allPokemons, setAllPokemons] = React.useState([]);
-  const { pokemons, error, isLoading, isError, isSuccess } =
-    usePokemonSearch(query);
+  const { pokemons, error, isError } = usePokemonSearch(query);
 
   const [fetchLoading, setfetchLoading] = React.useState();
   const navigate = useNavigate();
@@ -63,6 +55,12 @@ function DiscoverPokemonScreen() {
 
   return (
     <div>
+      {isError ? (
+        <div css={{ color: colors.danger }}>
+          <p>There was an error:</p>
+          <pre>{error.message}</pre>
+        </div>
+      ) : null}
       <div>
         <Search setAllPokemons={setAllPokemons} />
         {fetchLoading ? (
@@ -70,20 +68,6 @@ function DiscoverPokemonScreen() {
             <Spinner />
           </div>
         ) : (
-          //  : queried ? (
-          //   <div css={{ marginTop: 20, fontSize: "1.2em", textAlign: "center" }}>
-          //     {isLoading ? (
-          //       <div css={{ width: "100%", margin: "auto" }}>
-          //         <Spinner />
-          //       </div>
-          //     ) : (
-          //       <p>
-          //         Hmmm... I couldn't find any books with the query "{query}."
-          //         Please try another.
-          //       </p>
-          //     )}
-          //   </div>
-          // )
           <PokemonList css={{ marginTop: 20 }}>
             {allPokemons.map((pokemon, id) => (
               <Pokemon key={pokemon.name} pokemon={pokemon} />

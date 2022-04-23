@@ -12,8 +12,9 @@ const { Input, Spinner } = require("components/lib/lib");
 function Search({ setAllPokemons }) {
   const [query, setQuery] = React.useState("");
   const [queried, setQueried] = React.useState(false);
-  const { pokemons, error, isLoading, isError, isSuccess } =
-    usePokemonSearch(query);
+  const { pokemons, error, isLoading, isError, isSuccess } = usePokemonSearch(
+    query.toLowerCase()
+  );
 
   function handleSearchClick(event) {
     event.preventDefault();
@@ -29,13 +30,19 @@ function Search({ setAllPokemons }) {
     if (pokemons?.name) {
       const list = [];
       list.push(pokemons);
-      console.log(list);
       setAllPokemons(list);
       setQueried(false);
     }
   }, [pokemons, setAllPokemons]);
   return (
     <React.Fragment>
+      {isError ? (
+        <div css={{ color: colors.danger }}>
+          <p>There was an error:</p>
+          <pre>The pokemon you searched for was not found</pre>
+          <pre>{error.message}</pre>
+        </div>
+      ) : null}
       <form onSubmit={handleSearchClick}>
         <Input
           placeholder="Search books..."
