@@ -10,14 +10,19 @@ import * as colors from "styles/colors";
 
 import { CircleButton, Spinner } from "../lib/lib";
 
-function TooltipButton({ label, highlight, onClick, icon, ...rest }) {
-  function handleClick() {
-    // if (isError) {
-    //   reset();
-    // } else {
-    //   run(onClick());
-    // }
-  }
+function TooltipButton({
+  label,
+  highlight,
+  onClick,
+  handleClick,
+  icon,
+  ...rest
+}) {
+  //   function handleClick() {
+
+  //       run(onClick());
+
+  //   }
 
   return (
     <Tooltip label={label}>
@@ -33,7 +38,7 @@ function TooltipButton({ label, highlight, onClick, icon, ...rest }) {
           },
         }}
         // disabled={isLoading}
-        onClick={handleClick}
+        onClick={onClick}
         aria-label={label}
         {...rest}
       >
@@ -45,14 +50,15 @@ function TooltipButton({ label, highlight, onClick, icon, ...rest }) {
 
 function StatusButtons(pokemon) {
   //   const listItem = useListItem(book.id)
-
+  const [added, setAdded] = React.useState();
   const addToFavourites = (pokemon) => {
-    // const poki = localStorage.setItem(pokemon.name, pokemon);
     console.log(pokemon);
+    localStorage.setItem(pokemon.pokemon.name, JSON.stringify(pokemon.pokemon));
+    setAdded(true);
   };
 
   React.useEffect(() => {
-    addToFavourites(pokemon);
+    // addToFavourites(pokemon);
   });
 
   return (
@@ -62,8 +68,8 @@ function StatusButtons(pokemon) {
           <TooltipButton
             label="Add to favorites"
             highlight={colors.yellow}
-            onClick={() => {}}
-            icon={<FaHeart color={colors.danger} />}
+            onClick={() => addToFavourites(pokemon)}
+            icon={<FaHeart color={added ? colors.danger : colors.base} />}
           />
         ) : (
           <TooltipButton

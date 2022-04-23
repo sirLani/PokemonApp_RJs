@@ -31,7 +31,7 @@ function NextPokemonScreen() {
   const { pokemons, error, isLoading, isError, isSuccess } = usePokemonSearch(
     location.state
   );
-  const [fetchLoading, setfetchLoading] = React.useState();
+  const [fetchLoading, setfetchLoading] = React.useState(true);
 
   const navigate = useNavigate();
 
