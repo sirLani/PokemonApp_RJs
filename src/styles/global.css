@@ -63,6 +63,7 @@ a:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .pokemon__image img {
@@ -103,6 +104,10 @@ a:focus {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+}
+.more-button {
+  display: flex;
+  justify-content: space-between;
 }
 
 .pokemon__meta div {

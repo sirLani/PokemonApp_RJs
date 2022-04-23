@@ -3,9 +3,12 @@
 import { jsx } from "@emotion/react";
 import { PokemonDetails } from "components/lib/lib";
 import { Modal, ModalContents, ModalOpenButton } from "components/modal/modal";
+import { StatusButtons } from "components/status-button/statusButton";
+import * as colors from "styles/colors";
+
 import * as React from "react";
+
 export function Pokemon({ pokemon }) {
-  console.log({ pokemon });
   const pokemonMeta = {
     alignSelf: "center",
   };
@@ -28,6 +31,7 @@ export function Pokemon({ pokemon }) {
           </div>
         </div>
       </ModalOpenButton>
+
       <ModalContents aria-label="Pokemon details" title={pokemon.name}>
         <PokemonDetails>
           <div className="pokemon__details">
@@ -39,8 +43,8 @@ export function Pokemon({ pokemon }) {
             <div className="pokemon__meta ">
               <h4>Stats:</h4>
 
-              {pokemon.stats.map((stat) => (
-                <div key={stat.stat.name}>
+              {pokemon.stats.map((stat, id) => (
+                <div key={id}>
                   {stat.stat.name}: {stat.base_stat}
                 </div>
               ))}
@@ -49,8 +53,8 @@ export function Pokemon({ pokemon }) {
             <div className="pokemon__ability">
               <h4>Ability:</h4>
               <div className="pokemon__attacks">
-                {pokemon.abilities.map((ability) => (
-                  <span key={ability.ability.name}>{ability.ability.name}</span>
+                {pokemon.abilities.map((ability, id) => (
+                  <span key={id}>{ability.ability.name}</span>
                 ))}
               </div>
             </div>
@@ -58,9 +62,9 @@ export function Pokemon({ pokemon }) {
               <h4>Attacks:</h4>
               <div className="pokemon__attacks">
                 {pokemon.moves.map((move, id) => (
-                  <div css={{ display: "flex" }}>
+                  <div key={id} css={{ display: "flex" }}>
                     <p css={{ marginRight: "8px" }}>{id + 1}.</p>
-                    <span key={move.move.name}>{move.move.name}</span>
+                    <span>{move.move.name}</span>
                   </div>
                 ))}
               </div>
@@ -71,6 +75,18 @@ export function Pokemon({ pokemon }) {
               src={pokemon.sprites.other.dream_world.front_default}
               alt={pokemon.name}
             />
+            <div
+              css={{
+                marginTop: "10px",
+                color: colors.gray80,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+                height: "100%",
+              }}
+            >
+              <StatusButtons book={pokemon} />
+            </div>
           </div>
         </PokemonDetails>
       </ModalContents>
