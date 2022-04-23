@@ -34,27 +34,9 @@ const getPokemonSearchConfig = (client, query) => ({
     },
   },
 });
-
 function usePokemonSearch(query) {
   const result = useQuery(getPokemonSearchConfig(client, query));
   return { ...result, pokemons: result.data ?? loadingPokemons };
 }
 
-const usePokemon = (pokemonList) => ({
-  queryKey: ["pokemonList", pokemonList.id],
-  queryFn: () =>
-    pokemonList.forEach(async (pokemon) => {
-      await fetch(pokemon.url).then((result) => {
-        result.json().then((res) => {
-          // list.push(res);
-        });
-      });
-    }),
-});
-
-function useFetchPokemonSearch(pokemonList) {
-  const result = useQuery(usePokemon(pokemonList));
-  return { ...result, pokemonList: result.data ?? loadingPokemons };
-}
-
-export { usePokemonSearch, useFetchPokemonSearch };
+export { usePokemonSearch };

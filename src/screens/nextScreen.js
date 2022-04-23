@@ -14,20 +14,25 @@ import {
   Button,
   splitUrl,
 } from "../components/lib/lib";
-import { usePokemonSearch } from "utils/pokemons";
+import { useNewPokemonList, usePokemonSearch } from "utils/pokemons";
 import { Pokemon } from "components/pokemonItem/pokemon";
-import { client } from "utils/api-client";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Search } from "components/search/search";
 // import { usePokemonSearch } from "utils/pokemons";
 
-function DiscoverPokemonScreen() {
-  const [query] = React.useState("");
-  const [allPokemons, setAllPokemons] = React.useState([]);
-  const { pokemons, error, isLoading, isError, isSuccess } =
-    usePokemonSearch(query);
+function NextPokemonScreen() {
+  const { id } = useParams();
+  console.log(id);
 
+  const location = useLocation();
+  console.log(location.state);
+
+  const [allPokemons, setAllPokemons] = React.useState([]);
+  const { pokemons, error, isLoading, isError, isSuccess } = usePokemonSearch(
+    location.state
+  );
   const [fetchLoading, setfetchLoading] = React.useState();
+
   const navigate = useNavigate();
 
   const fetchPokemons = (pokemonList) => {
@@ -46,11 +51,17 @@ function DiscoverPokemonScreen() {
 
   const next = async (link) => {
     const lastSegment = await splitUrl(link, "/");
-    navigate(`/next/${1}`, { state: lastSegment });
+    navigate(`/next/${parseInt(id) + 1}`, { state: lastSegment });
+  };
+
+  const prev = async (link) => {
+    const lastSegment = await splitUrl(link, "/");
+    navigate(`/next/${parseInt(id) - 1}`, { state: lastSegment });
   };
 
   React.useEffect(() => {
     if (pokemons?.results) {
+      console.log(pokemons);
       const pokemonList = pokemons.results;
       const pokiList = fetchPokemons(pokemonList);
       setAllPokemons(pokiList);
@@ -65,6 +76,14 @@ function DiscoverPokemonScreen() {
     <div>
       <div>
         <Search setAllPokemons={setAllPokemons} />
+        {isError ? (
+          <div css={{ color: colors.danger }}>
+            <p>There was an error:</p>
+            <pre>{error.message}</pre>
+          </div>
+        ) : null}
+      </div>
+      <div>
         {fetchLoading ? (
           <div css={{ width: "100%", margin: "0,auto" }}>
             <Spinner />
@@ -90,10 +109,9 @@ function DiscoverPokemonScreen() {
             ))}
           </PokemonList>
         )}
-
         <div className="more-button">
           {pokemons?.previous != null ? (
-            <Button onClick={() => {}}>prev</Button>
+            <Button onClick={() => prev(pokemons.previous)}>prev</Button>
           ) : (
             <></>
           )}
@@ -108,4 +126,4 @@ function DiscoverPokemonScreen() {
   );
 }
 
-export { DiscoverPokemonScreen };
+export { NextPokemonScreen };

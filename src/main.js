@@ -8,6 +8,7 @@ import { ErrorMessage, FullPageErrorFallback } from "./components/lib/lib";
 import * as mq from "./styles/media-queries";
 import * as colors from "./styles/colors";
 import { DiscoverPokemonScreen } from "screens/discoverPokemon";
+import { NextPokemonScreen } from "screens/nextScreen";
 
 function ErrorFallback({ error }) {
   return (
@@ -146,6 +147,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<DiscoverPokemonScreen />} />
+      <Route path="next/:id" element={<NextPokemonScreen />} />
     </Routes>
   );
 }

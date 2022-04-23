@@ -1,0 +1,81 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx } from "@emotion/react";
+
+import * as React from "react";
+import { FaCheckCircle, FaHeart, FaSearch } from "react-icons/fa";
+import Tooltip from "@reach/tooltip";
+
+import * as colors from "styles/colors";
+
+import { CircleButton, Spinner } from "../lib/lib";
+
+function TooltipButton({ label, highlight, onClick, icon, ...rest }) {
+  function handleClick() {
+    // if (isError) {
+    //   reset();
+    // } else {
+    //   run(onClick());
+    // }
+  }
+
+  return (
+    <Tooltip label={label}>
+      <CircleButton
+        css={{
+          backgroundColor: colors.gray20,
+          ":hover,:focus": {
+            // color: isLoading
+            //   ? colors.gray80
+            //   : isError
+            //   ? colors.danger
+            //   : highlight,
+          },
+        }}
+        // disabled={isLoading}
+        onClick={handleClick}
+        aria-label={label}
+        {...rest}
+      >
+        {icon}
+      </CircleButton>
+    </Tooltip>
+  );
+}
+
+function StatusButtons(pokemon) {
+  //   const listItem = useListItem(book.id)
+
+  const addToFavourites = (pokemon) => {
+    // const poki = localStorage.setItem(pokemon.name, pokemon);
+    console.log(pokemon);
+  };
+
+  React.useEffect(() => {
+    addToFavourites(pokemon);
+  });
+
+  return (
+    <React.Fragment>
+      {pokemon ? (
+        Boolean(pokemon) ? (
+          <TooltipButton
+            label="Add to favorites"
+            highlight={colors.yellow}
+            onClick={() => {}}
+            icon={<FaHeart color={colors.danger} />}
+          />
+        ) : (
+          <TooltipButton
+            label="Remove from favorites"
+            highlight={colors.green}
+            onClick={() => {}}
+            icon={<FaCheckCircle />}
+          />
+        )
+      ) : null}
+    </React.Fragment>
+  );
+}
+
+export { StatusButtons };
