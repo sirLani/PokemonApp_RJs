@@ -3,12 +3,9 @@
 import { jsx } from "@emotion/react";
 
 import * as React from "react";
-import Tooltip from "@reach/tooltip";
-import { FaSearch, FaTimes } from "react-icons/fa";
-import * as colors from "styles/colors";
-
 import { Spinner, PokemonList } from "../components/lib/lib";
 import { Pokemon } from "components/pokemonItem/pokemon";
+import { Favorites } from "utils/pokemons";
 
 function FavouriteScreen() {
   const [allPokemons, setAllPokemons] = React.useState([]);
@@ -16,32 +13,31 @@ function FavouriteScreen() {
   const [fetchLoading, setfetchLoading] = React.useState(true);
 
   React.useEffect(() => {
-    const list = [];
-    Object.keys(localStorage).map((k) => {
-      console.log(k);
-      const pokiList = localStorage.getItem(k);
-      list.push(JSON.parse(pokiList));
-      setfetchLoading(false);
-      setAllPokemons(list);
-    });
-
-    console.log(list);
+    setfetchLoading(false);
+    const pokiList = Favorites();
+    setAllPokemons(pokiList);
   }, []);
 
   return (
     <div>
-      <div></div>
       <div>
         {fetchLoading ? (
           <div css={{ width: "100%", margin: "0,auto" }}>
             <Spinner />
           </div>
-        ) : (
+        ) : allPokemons?.length > 0 ? (
           <PokemonList css={{ marginTop: 20 }}>
             {allPokemons.map((pokemon, id) => (
               <Pokemon key={pokemon.name} pokemon={pokemon} />
             ))}
           </PokemonList>
+        ) : (
+          <div css={{ marginTop: 20, fontSize: "1.2em", textAlign: "center" }}>
+            <p>
+              Hmmm... I couldn't find any favorite pokemon Please try to pick a
+              favorite.
+            </p>
+          </div>
         )}
       </div>
     </div>

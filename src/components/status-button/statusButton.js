@@ -3,12 +3,12 @@
 import { jsx } from "@emotion/react";
 
 import * as React from "react";
-import { FaCheckCircle, FaHeart, FaSearch } from "react-icons/fa";
+import { FaCheckCircle, FaHeart } from "react-icons/fa";
 import Tooltip from "@reach/tooltip";
 
 import * as colors from "styles/colors";
 
-import { CircleButton, Spinner } from "../lib/lib";
+import { CircleButton } from "../lib/lib";
 
 function TooltipButton({
   label,
@@ -18,26 +18,12 @@ function TooltipButton({
   icon,
   ...rest
 }) {
-  //   function handleClick() {
-
-  //       run(onClick());
-
-  //   }
-
   return (
     <Tooltip label={label}>
       <CircleButton
         css={{
           backgroundColor: colors.gray20,
-          ":hover,:focus": {
-            // color: isLoading
-            //   ? colors.gray80
-            //   : isError
-            //   ? colors.danger
-            //   : highlight,
-          },
         }}
-        // disabled={isLoading}
         onClick={onClick}
         aria-label={label}
         {...rest}
@@ -49,26 +35,34 @@ function TooltipButton({
 }
 
 function StatusButtons(pokemon) {
-  //   const listItem = useListItem(book.id)
   const [added, setAdded] = React.useState();
   const addToFavourites = (pokemon) => {
-    console.log(pokemon);
     localStorage.setItem(pokemon.pokemon.name, JSON.stringify(pokemon.pokemon));
     setAdded(true);
   };
 
+  const removeFromFavourites = (pokemon) => {
+    localStorage.removeItem(pokemon.pokemon.name);
+    setAdded(false);
+  };
+
   React.useEffect(() => {
-    // addToFavourites(pokemon);
-  });
+    const pokiList = Object.keys(localStorage);
+    if (pokiList.includes(pokemon.pokemon.name)) {
+      setAdded(true);
+    }
+  }, [pokemon.pokemon.name]);
 
   return (
     <React.Fragment>
       {pokemon ? (
         Boolean(pokemon) ? (
           <TooltipButton
-            label="Add to favorites"
+            label={added ? "Remove from favorites" : "Add to favorites"}
             highlight={colors.yellow}
-            onClick={() => addToFavourites(pokemon)}
+            onClick={() =>
+              added ? removeFromFavourites(pokemon) : addToFavourites(pokemon)
+            }
             icon={<FaHeart color={added ? colors.danger : colors.base} />}
           />
         ) : (
