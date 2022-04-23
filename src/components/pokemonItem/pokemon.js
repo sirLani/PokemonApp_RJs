@@ -85,7 +85,7 @@ export function Pokemon({ pokemon }) {
                 height: "100%",
               }}
             >
-              <StatusButtons book={pokemon} />
+              <StatusButtons pokemon={pokemon} />
             </div>
           </div>
         </PokemonDetails>

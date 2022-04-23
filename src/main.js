@@ -9,6 +9,7 @@ import * as mq from "./styles/media-queries";
 import * as colors from "./styles/colors";
 import { DiscoverPokemonScreen } from "screens/discoverPokemon";
 import { NextPokemonScreen } from "screens/nextScreen";
+import { FavouriteScreen } from "screens/favourites";
 
 function ErrorFallback({ error }) {
   return (
@@ -147,6 +148,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<DiscoverPokemonScreen />} />
+      <Route path="favorites" element={<FavouriteScreen />} />
       <Route path="next/:id" element={<NextPokemonScreen />} />
     </Routes>
   );
