@@ -70,3 +70,15 @@ test("when data is provided, it is stringified and the method defaults to POST",
 
   expect(result).toEqual(data);
 });
+
+test("correctly rejects the promise if there is an error", async () => {
+  const endpoint = "/test-endpoint";
+  const testError = { message: "Test error" };
+  server.use(
+    rest.get(`${apiURL}${endpoint}`, async (req, res, ctx) => {
+      return res(ctx.status(400), ctx.json(testError));
+    })
+  );
+
+  await expect(client(endpoint)).rejects.toEqual(testError);
+});
