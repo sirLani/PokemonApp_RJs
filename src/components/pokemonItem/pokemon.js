@@ -6,8 +6,6 @@ import { Modal, ModalContents, ModalOpenButton } from "components/modal/modal";
 import { StatusButtons } from "components/status-button/statusButton";
 import * as colors from "styles/colors";
 
-import * as React from "react";
-
 export function Pokemon({ pokemon }) {
   const pokemonMeta = {
     alignSelf: "center",

@@ -3,8 +3,6 @@
 import { jsx } from "@emotion/react";
 
 import * as React from "react";
-import Tooltip from "@reach/tooltip";
-import { FaSearch, FaTimes } from "react-icons/fa";
 import * as colors from "styles/colors";
 
 import { Spinner, PokemonList, Button, splitUrl } from "../components/lib/lib";
@@ -18,7 +16,7 @@ function DiscoverPokemonScreen() {
   const [query] = React.useState("");
   const [allPokemons, setAllPokemons] = React.useState([]);
   const { pokemons, error, isError } = usePokemonSearch(query);
-
+  console.log(pokemons);
   const [fetchLoading, setfetchLoading] = React.useState();
   const navigate = useNavigate();
 
@@ -33,6 +31,7 @@ function DiscoverPokemonScreen() {
         });
       });
     });
+
     return list;
   };
 
