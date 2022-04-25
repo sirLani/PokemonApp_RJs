@@ -16,7 +16,6 @@ function DiscoverPokemonScreen() {
   const [query] = React.useState("");
   const [allPokemons, setAllPokemons] = React.useState([]);
   const { pokemons, error, isError } = usePokemonSearch(query);
-  console.log(pokemons);
   const [fetchLoading, setfetchLoading] = React.useState();
   const navigate = useNavigate();
 
