@@ -68,7 +68,7 @@ function DiscoverPokemonScreen() {
         ) : (
           <PokemonList css={{ marginTop: 20 }}>
             {allPokemons.map((pokemon, id) => (
-              <Pokemon key={pokemon.name} pokemon={pokemon} />
+              <Pokemon key={id} pokemon={pokemon} />
             ))}
           </PokemonList>
         )}
