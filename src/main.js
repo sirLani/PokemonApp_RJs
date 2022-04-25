@@ -1,7 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-
 import { Routes, Route, Link as RouterLink, useMatch } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorMessage, FullPageErrorFallback } from "./components/lib/lib";
@@ -27,27 +26,8 @@ function ErrorFallback({ error }) {
 }
 
 function MainApp() {
-  //   const { user, logout } = useAuth();
   return (
     <ErrorBoundary FallbackComponent={FullPageErrorFallback}>
-      <div
-        css={{
-          display: "flex",
-          alignItems: "center",
-          position: "absolute",
-          top: "10px",
-          right: "10px",
-        }}
-      >
-        {/* {user.username}
-        <Button
-          variant="secondary"
-          css={{ marginLeft: "10px" }}
-          onClick={logout}
-        >
-          Logout
-        </Button> */}
-      </div>
       <div
         css={{
           margin: "0 auto",
@@ -76,7 +56,6 @@ function MainApp() {
     </ErrorBoundary>
   );
 }
-
 function NavLink(props) {
   const match = useMatch(props.to);
   return (
@@ -113,6 +92,22 @@ function NavLink(props) {
 }
 
 function Nav(params) {
+  const navLinkStyle = {
+    display: "block",
+    padding: "8px 15px 8px 10px",
+    margin: "5px 0",
+    width: "100%",
+    height: "100%",
+    color: colors.text,
+    borderRadius: "2px",
+    borderLeft: "5px solid transparent",
+    ":hover,:focus": {
+      color: colors.indigo,
+      textDecoration: "none",
+      background: colors.gray10,
+    },
+  };
+
   return (
     <nav
       css={{
@@ -147,7 +142,7 @@ function Nav(params) {
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<DiscoverPokemonScreen />} />
+      <Route exact path="/" element={<DiscoverPokemonScreen />} />
       <Route path="favorites" element={<FavouriteScreen />} />
       <Route path="next/:id" element={<NextPokemonScreen />} />
     </Routes>
