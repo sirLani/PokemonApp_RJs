@@ -3,7 +3,7 @@
 import { jsx } from "@emotion/react";
 
 import * as React from "react";
-import { FaCheckCircle, FaHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import Tooltip from "@reach/tooltip";
 
 import * as colors from "styles/colors";
