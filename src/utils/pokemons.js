@@ -8,7 +8,7 @@ const loadingPokemon = {
   PokemonImageUrl: pokemonPlaceholderSvg,
   publisher: "Loading Publishing",
   synopsis: "Loading...",
-  loadingBook: true,
+  loadingPokemons: true,
 };
 
 const loadingPokemons = Array.from({ length: 10 }, (v, index) => ({

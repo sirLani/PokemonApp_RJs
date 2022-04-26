@@ -62,17 +62,9 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
 ### Dependencies
 
-React testing library was used for testing
+React testing library was used for testing, for easy testing and to avoid writing too much code
 
 ### Challenges
 
@@ -95,9 +87,11 @@ Fifth: I had challenges during testing and i could not do more tests, i was able
 
 If i had more time, i would like to do more on the testing aspect of it, I want to use MSW to mock the API for testing, because it would help to bridge some errors like what if a PUT request was made to the endpoint rather than a GET request, then there is no way to differentiate between the two.
 
-I also want to write more integration tests, as i need to gain better understanding
+I also want to write more integration tests
 
 I would also like to create a subscription aspect of it, so that a user can register and a database can be set to store the users favourites, by using Firebase for example
+
+I would also write it in typescript
 
 ## Extra features
 

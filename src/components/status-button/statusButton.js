@@ -36,6 +36,7 @@ function TooltipButton({
 
 function StatusButtons(pokemon) {
   const [added, setAdded] = React.useState();
+
   const addToFavourites = (pokemon) => {
     localStorage.setItem(pokemon.pokemon.name, JSON.stringify(pokemon.pokemon));
     setAdded(true);
@@ -66,12 +67,7 @@ function StatusButtons(pokemon) {
             icon={<FaHeart color={added ? colors.danger : colors.base} />}
           />
         ) : (
-          <TooltipButton
-            label="Remove from favorites"
-            highlight={colors.green}
-            onClick={() => {}}
-            icon={<FaCheckCircle />}
-          />
+          <></>
         )
       ) : null}
     </React.Fragment>

@@ -4,11 +4,12 @@ import { jsx } from "@emotion/react";
 import * as React from "react";
 import * as colors from "styles/colors";
 
-import { Spinner, PokemonList, Button, splitUrl } from "../components/lib/lib";
+import { Spinner, PokemonList, Button } from "../components/lib/lib";
 import { usePokemonSearch } from "utils/pokemons";
 import { Pokemon } from "components/pokemonItem/pokemon";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Search } from "components/search/search";
+import { splitUrl } from "utils/helper";
 
 function NextPokemonScreen() {
   const { id } = useParams();
@@ -23,16 +24,15 @@ function NextPokemonScreen() {
 
   const fetchPokemons = (pokemonList) => {
     setfetchLoading(true);
-    const list = [];
+    setAllPokemons([]);
     pokemonList.map(async (pokemon) => {
       await fetch(pokemon.url).then((result) => {
         result.json().then((res) => {
-          list.push(res);
           setfetchLoading(false);
+          setAllPokemons((pokis) => [...pokis, res]);
         });
       });
     });
-    return list;
   };
 
   const next = async (link) => {
@@ -48,8 +48,7 @@ function NextPokemonScreen() {
   React.useEffect(() => {
     if (pokemons?.results) {
       const pokemonList = pokemons.results;
-      const pokiList = fetchPokemons(pokemonList);
-      setAllPokemons(pokiList);
+      fetchPokemons(pokemonList);
     } else if (pokemons?.name) {
       const list = [];
       list.push(pokemons);
