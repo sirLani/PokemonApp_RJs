@@ -45,12 +45,12 @@ function Search({ setAllPokemons }) {
       ) : null}
       <form onSubmit={handleSearchClick}>
         <Input
-          placeholder="Search books..."
+          placeholder="Search pokemons..."
           id="search"
           type="search"
           css={{ width: "100%" }}
         />
-        <Tooltip label="Search Books">
+        <Tooltip label="Search pokemons">
           <label htmlFor="search">
             <button
               type="submit"

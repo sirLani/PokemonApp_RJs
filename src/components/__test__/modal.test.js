@@ -3,7 +3,7 @@ import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Modal, ModalContents, ModalOpenButton } from "components/modal/modal";
 
-test("can be opened and closed", () => {
+test("modal can be opened and closed", () => {
   const label = "Modal Label";
   const title = "Modal Title";
   const content = "Modal content";

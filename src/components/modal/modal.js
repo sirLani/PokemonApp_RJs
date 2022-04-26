@@ -4,7 +4,8 @@ import { jsx } from "@emotion/react";
 
 import * as React from "react";
 import VisuallyHidden from "@reach/visually-hidden";
-import { Dialog, CircleButton, capitalize } from "../lib/lib";
+import { Dialog, CircleButton } from "../lib/lib";
+import { capitalize } from "utils/helper";
 
 const callAll =
   (...fns) =>
