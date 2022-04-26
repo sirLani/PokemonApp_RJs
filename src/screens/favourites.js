@@ -3,7 +3,7 @@
 import { jsx } from "@emotion/react";
 
 import * as React from "react";
-import { Spinner, PokemonList } from "../components/lib/lib";
+import { Spinner, PokemonList } from "components/lib/lib";
 import { Pokemon } from "components/pokemonItem/pokemon";
 import { Favorites } from "utils/pokemons";
 

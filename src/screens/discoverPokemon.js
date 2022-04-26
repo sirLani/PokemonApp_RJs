@@ -5,7 +5,7 @@ import { jsx } from "@emotion/react";
 import * as React from "react";
 import * as colors from "styles/colors";
 
-import { Spinner, PokemonList, Button } from "../components/lib/lib";
+import { Spinner, PokemonList, Button } from "components/lib/lib";
 import { usePokemonSearch } from "utils/pokemons";
 import { Pokemon } from "components/pokemonItem/pokemon";
 
