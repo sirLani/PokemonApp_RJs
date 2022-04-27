@@ -67,6 +67,12 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 ### Dependencies
 
 React testing library was used for testing, for easy testing and to avoid writing too much code
+React Query: For state management
+
+## Hosting
+
+it was deployed on Netlify and can be accessed using this link
+https://poki-task.netlify.app/
 
 ### Challenges
 
