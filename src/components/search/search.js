@@ -50,7 +50,7 @@ function Search({ setAllPokemons }) {
           type="search"
           css={{ width: "100%" }}
         />
-        <Tooltip label="Search pokemons">
+        <Tooltip label="Search pokemonsnpm start">
           <label htmlFor="search">
             <button
               type="submit"

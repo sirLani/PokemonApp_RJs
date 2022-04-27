@@ -28,10 +28,12 @@ npm start
 ```
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:4000](http://localhost:4000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+I had to change the port to :4000 because i used local storage to persist the favourite pokemons, and as a result of this it would give an error if a port :3000 is used and and it has storage in it already
 
 ## Running the tests
 
